@@ -1,4 +1,4 @@
-#Setup
+# Setup
 
 I wrote this as a personal setup script for my Mac. You might find it useful too.
 
