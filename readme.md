@@ -31,6 +31,7 @@ Use without paramters to see this message
 --run Run default installation script
 --gatesave Skip Gatekeeper patch (must always be last parameter)
 --hackerman Install pen-testing tools (must always be second parameter)
+--uninstall Show removal options
 -h Show this message
 ```
 
