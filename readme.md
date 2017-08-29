@@ -58,3 +58,16 @@ I use package managers for a number of reasons:
 * Ease of uninstallation should it ever come to such blasphemy
 
 Note: Homebrew is given preference since it is the most stable, respectful and sustainable package manager I've found. 
+
+### I hate this...how can I get rid of it?
+
+An uninstallation option is in the works that will revert the system back to a near clean state. I plan on incorporating four options for this that will do the following:
+
+1. Remove pen-testing tools only
+2. Remove pen-testing tools and other third-party CLI packages 
+3. Remove everything, including installed frameworks, package managers and repositories, except for symlinks, aliases and dependencies. Some tools that manage configs like Mackup may also remain to avoid problems. 
+4. Remove everything and clean up the cruft...this effectively resets your system to before the script was run.  
+
+These options are very much subject to change and may be implimented on a rolling release basis. 
+
+TL;DR: There is currently no easy way to just reset the work done by this script. It runs one and then it's done. You can pretty easily undo anything it does manually, but I understand that's a lot of work. Also please keep in mind this was designed to automate my own workflow as much as possible and as such it can be aggressive with installing things sometimes...if there's a single thing in the script you don't want, modify it before running because it *will* install it. 
