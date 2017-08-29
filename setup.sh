@@ -18,12 +18,12 @@ if [ $EUID -eq 0 ]; then
 fi
 
 if [ $# -eq 0 ]; then
-  printf "Use without paramters to see this message\n\n--gatesave Skip Gatekeeper patch (must always be last parameter)\n--hackerman Install pen-testing tools (must always be second parameter)\n-h Show this message\n\n"
+  printf "Use without paramters to see this message\n\n--run Run default installation script\n--gatesave Skip Gatekeeper patch (must always be last parameter)\n--hackerman Install pen-testing tools (must always be second parameter)\n-h Show this message\n\n"
   exit
 fi
 
 if [ "$1" == "-h" ]; then
-  printf "Use without paramters to see this message\n\n--gatesave Skip Gatekeeper patch (must always be last parameter)\n--hackerman Install pen-testing tools (must always be second parameter)\n-h Show this message\n\n"
+  printf "Use without paramters to see this message\n\n--run Run default installation script\n--gatesave Skip Gatekeeper patch (must always be last parameter)\n--hackerman Install pen-testing tools (must always be second parameter)\n-h Show this message\n\n"
   exit
 fi
 

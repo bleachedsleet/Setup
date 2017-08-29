@@ -21,13 +21,14 @@ Just make the script executable and you're good to go!
 chmod +x setup.sh
 ```
 
-Note that curl and git are requirements for this script to run (see below). 
+**Note** that curl and git are requirements for this script to run (see below). 
 
 ## Usage
 
 ```
 Use without paramters to see this message
 
+--run Run default installation script
 --gatesave Skip Gatekeeper patch (must always be last parameter)
 --hackerman Install pen-testing tools (must always be second parameter)
 -h Show this message
