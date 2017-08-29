@@ -30,7 +30,3 @@ Use without paramters to run all defaults
 --hackerman Install pen-testing tools
 -h Show this message
 ```
-
-## Known Issues
-
-Yes, the Gatekeeper patch will run always...I know. I'm lazy and haven't fixed the parameter checks yet. It's on the `#TODO` list :) 

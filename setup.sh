@@ -17,7 +17,7 @@ if [ $EUID -eq 0 ]; then
    exit
 fi
 
-if [ "$2" != "--gatesave" ]; then
+if [ "$2" != "--gatesave" ] && [ "$1" != "-h" ]; then
   gatekill
 fi
 
