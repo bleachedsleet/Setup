@@ -26,10 +26,10 @@ Note that curl and git are requirements for this script to run (see below).
 ## Usage
 
 ```
-Use without paramters to run all defaults
+Use without paramters to see this message
 
---gatesave Skip Gatekeeper patch
---hackerman Install pen-testing tools
+--gatesave Skip Gatekeeper patch (must always be last parameter)
+--hackerman Install pen-testing tools (must always be second parameter)
 -h Show this message
 ```
 

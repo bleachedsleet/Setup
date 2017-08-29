@@ -17,90 +17,99 @@ if [ $EUID -eq 0 ]; then
    exit
 fi
 
-if [ "$2" != "--gatesave" ] && [ "$1" != "-h" ]; then
-  gatekill
-fi
-
-if [ "$1" == "-h" ]; then
-  printf "Use without paramters to run all defaults\n\n--gatesave Skip Gatekeeper patch\n--hackerman Install pen-testing tools\n-h Show this message\n\n"
+if [ $# -eq 0 ]; then
+  printf "Use without paramters to see this message\n\n--gatesave Skip Gatekeeper patch (must always be last parameter)\n--hackerman Install pen-testing tools (must always be second parameter)\n-h Show this message\n\n"
   exit
 fi
 
-printf "Checking for Homebrew\n"
-brew info > /dev/null
-if [ $? == 0 ]; then
-  printf "Already installed\n"
-  printf "[+] Updating Homebrew\n"
-  brew update
-  brew upgrade
-  printf "[+] Pruning\n"
-  brew prune
-else
-  printf "[+] Installing Homebrew\n"
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-printf "Checking for Python-3\n"
-python3 -V > /dev/null
-if [ $? == 0 ]; then
-  printf "Already installed\n"
-else
-  printf "[+] Installing Python-3\n"
-  brew install python3
-fi
-printf "Checking for default pip installation\n"
-pip > /dev/null
-if [ $? == 0 ]; then
-	printf "Already installed\n"
-else
-	printf "[+] Installing pip\n"
-	sudo easy_install pip
-fi
-printf "[+] Installing dependency packages if needed\n"
-pip3 install requests censys termcolor colorama
-printf "[+] Installing taps into Homebrew\n"
-brew tap caskroom/cask
-printf "[+] Installing Nodejs\n"
-brew install node
-printf "[+] Installing CLI Packages\n"
-brew install thefuck
-sudo npm install --save trash
-sudo npm install --global trash-cli
-sudo npm install -g vtop
-sudo pip install howdoi
-sudo npm install -g tldr
-sudo npm install -g now
-sudo npm install alex --global
-brew install mackup
-printf "Install Xcode now (v9+) then press [ENTER] to continue\nIf you don't want to do this now, press [S]\n"
-read skip
-if [ $skip == S ] || [ $skip == s ]; then
-  printf "Skipping Xcode install\n"
-  printf "Xcode skipped...MAS will not be installed\n"
-else
-  xcodebuild -version > /dev/null
-  if [ $? == 0 ]; then
-    brew install mas
-  else
-    printf "Xcode could not be found...MAS was not installed\n"
-  fi
-fi
-if [ ! -d "~/Dropbox/" ]; then
-  printf "Dropbox not installed...skipping config restore\n"
-else
-  if [ -d "~/Dropbox/Mackup/" ]; then
-    printf "[+] Restoring configs\n"
-    mackup restore
-  fi
-fi
-printf "[+] Updating dotfiles\n"
-printf "eval $(thefuck --alias)\n" >> ~/.bash_profile
-source ~/.bash_profile
-if [ ! ~/icloud/ ]; then
-  printf "[+] Symlinking folders\n"
-  ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs ~/iCloud
+if [ "$1" == "-h" ]; then
+  printf "Use without paramters to see this message\n\n--gatesave Skip Gatekeeper patch (must always be last parameter)\n--hackerman Install pen-testing tools (must always be second parameter)\n-h Show this message\n\n"
+  exit
 fi
 
-if [ "$1" == "--hackerman" ]; then
+if [ "$1" == "--run" ]; then
+  if [ "$2" != "--gatesave" ] && [ "$2" != "--hackerman" ]; then
+    gatekill
+  fi
+  printf "Checking for Homebrew\n"
+  brew info > /dev/null
+  if [ $? == 0 ]; then
+    printf "Already installed\n"
+    printf "[+] Updating Homebrew\n"
+    brew update
+    brew upgrade
+    printf "[+] Pruning\n"
+    brew prune
+  else
+    printf "[+] Installing Homebrew\n"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+  printf "Checking for Python-3\n"
+  python3 -V > /dev/null
+  if [ $? == 0 ]; then
+    printf "Already installed\n"
+  else
+    printf "[+] Installing Python-3\n"
+    brew install python3
+  fi
+  printf "Checking for default pip installation\n"
+  pip > /dev/null
+  if [ $? == 0 ]; then
+  	printf "Already installed\n"
+  else
+  	printf "[+] Installing pip\n"
+  	sudo easy_install pip
+  fi
+  printf "[+] Installing dependency packages if needed\n"
+  pip3 install requests censys termcolor colorama
+  printf "[+] Installing taps into Homebrew\n"
+  brew tap caskroom/cask
+  printf "[+] Installing Nodejs\n"
+  brew install node
+  printf "[+] Installing CLI Packages\n"
+  brew install thefuck
+  sudo npm install --save trash
+  sudo npm install --global trash-cli
+  sudo npm install -g vtop
+  sudo pip install howdoi
+  sudo npm install -g tldr
+  sudo npm install -g now
+  sudo npm install alex --global
+  brew install mackup
+  printf "Install Xcode now (v9+) then press [ENTER] to continue\nIf you don't want to do this now, press [S]\n"
+  read skip
+  if [ $skip == S ] || [ $skip == s ]; then
+    printf "Skipping Xcode install\n"
+    printf "Xcode skipped...MAS will not be installed\n"
+  else
+    xcodebuild -version > /dev/null
+    if [ $? == 0 ]; then
+      brew install mas
+    else
+      printf "Xcode could not be found...MAS was not installed\n"
+    fi
+  fi
+  if [ ! -d "~/Dropbox/" ]; then
+    printf "Dropbox not installed...skipping config restore\n"
+  else
+    if [ -d "~/Dropbox/Mackup/" ]; then
+      printf "[+] Restoring configs\n"
+      mackup restore
+    fi
+  fi
+  printf "[+] Updating dotfiles\n"
+  printf "eval $(thefuck --alias)\n" >> ~/.bash_profile
+  source ~/.bash_profile
+  if [ ! ~/icloud/ ]; then
+    printf "[+] Symlinking folders\n"
+    ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs ~/iCloud
+  fi
+fi
+
+if [ "$2" == "--hackerman" ]; then
+  if [ "$3" != "--gatesave" ]; then
+    gatekill
+  fi
   printf "[+] Installing Nikto\n"
   brew install nikto
   printf "[+] Installing Nmap\n"
