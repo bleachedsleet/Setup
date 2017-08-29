@@ -109,7 +109,7 @@ if [ "$1" == "--hackerman" ]; then
   brew install netcat
   printf "[+] Installing SSLsplit\n"
   brew install sslsplit
-  printf "[+] Installing Arparp-scan\n"
+  printf "[+] Installing Arp-scan\n"
   brew install arp-scan
   printf "[+] Installing Arpy\n"
   cd
