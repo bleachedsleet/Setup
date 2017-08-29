@@ -11,3 +11,26 @@ It installs a number of useful utilities by default but can also install some mo
 * Symlinks iCloud Drive for easier access from the CLI
 * "Patches" Gatekeeper so you can install software from anywhere on El Capitan or higher systems
 * Properly sets up Metasploit and SET so they are immediately useable with an alias
+* Respects system privileges and only requests ROOT when needed
+
+## Installation 
+
+Just make the script executable and you're good to go!
+
+```
+chmod +x setup.sh
+```
+
+## Usage
+
+```
+Use without paramters to run all defaults
+
+--gatesave Skip Gatekeeper patch
+--hackerman Install pen-testing tools
+-h Show this message
+```
+
+## Known Issues
+
+Yes, the Gatekeeper patch will run always...I know. I'm lazy and haven't fixed the parameter checks yet. It's on the `#TODO` list :) 
