@@ -30,3 +30,13 @@ Use without paramters to run all defaults
 --hackerman Install pen-testing tools
 -h Show this message
 ```
+
+### So...where does this install shit again?
+
+Mostly this script uses package managers like NPM, Homebrew and Pip to install things and lets them handle paths accordingly. Otherwise, it installs everything into some well organized, neat directories in your `$HOME` directory. Any temporary directories or files created are deleted immediately to keep your system clean. Some aliases are created in your `~/.bash_profile` dotfile. Fork and modify as you see fit to change this workflow style. 
+
+Please note that `rm -Rf` is used at times to speed up the process of deleting temp files. If this troubles you, feel free to modify. An option for deleting directly to the trash instead will be offered in a near-future update utilizing the `trash-cli` tool that is installed with this script. 
+
+### You want me to sudo what???
+
+Actually, I don't want you to sudo anything. Running this script as ROOT will give a very intentional error. Too much ROOT is generally not a good thing in my opinion, so I explicitly wrote this script to only request ROOT when it was specifically needed for the command to function properly. To speed things up and add scriptability, an option will be given in a later update to authorize ROOT only once, but even then, this authorization will only be invoked when needed...superuser privileges will never be required by default just to run the damn thing!
