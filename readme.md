@@ -33,6 +33,8 @@ Use without paramters to run all defaults
 -h Show this message
 ```
 
+## FAQ
+
 ### So...where does this install shit again?
 
 Mostly this script uses package managers like NPM, Homebrew and Pip to install things and lets them handle paths accordingly. Otherwise, it installs everything into some well organized, neat directories in your `$HOME` directory. Any temporary directories or files created are deleted immediately to keep your system clean. Some aliases are created in your `~/.bash_profile` dotfile. Fork and modify as you see fit to change this workflow style. 
