@@ -12,18 +12,60 @@ gatekill ()
   fi
 }
 
+remove ()
+{
+  if [ "$1" != "1" ] || [ "$1" != "2" ] || [ "$1" != "3" ]; then
+    printf "[ERROR] Unknown option\n"
+    return
+  fi
+  brew uninstall nikto
+  brew uninstall nmap
+  brew uninstall netcat
+  brew uninstall sslsplit
+  brew uninstall arp-scan
+  rm -Rf ~/arpy/
+  sudo rm -Rf /opt/
+  rm -Rf ~/setoolkit/
+  if [ "$1" == "1" ]; then
+    return  
+  fi
+  brew uninstall thefuck
+  sudo npm uninstall -g trash
+  sudo npm uninstall -g trash-cli
+  sudo npm uninstall -g tldr
+  sudo npm uninstall -g now
+  sudo npm uninstall -g alex
+  sudo npm uninstall -g vtop
+  sudo pip uninstall howdoi
+  brew uninstall mas
+  if [ "$1" == "2" ]; then
+    return
+  fi
+  pip uninstall pyopenssl pefile
+  sudo pip uninstall pexpect pycrypto
+  pip3 uninstall requests censys termcolor colorama
+  brew uninstall node
+  brew uninstall mackup
+  rm -Rf ~/Dropbox/Mackup/
+  brew uninstall gource
+  brew uninstall python3
+  rm -Rf ~/iCloud
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+}
+
+
 if [ $EUID -eq 0 ]; then
    printf "Please don't run me as root\nThis is a safety feature...I'll request root as needed\n"
    exit
 fi
 
 if [ $# -eq 0 ]; then
-  printf "Use without paramters to see this message\n\n--run Run default installation script\n--gatesave Skip Gatekeeper patch (must always be last parameter)\n--hackerman Install pen-testing tools (must always be second parameter)\n-h Show this message\n\n"
+  printf "Use without paramters to see this message\n\n--run Run default installation script\n--gatesave Skip Gatekeeper patch (must always be last parameter)\n--hackerman Install pen-testing tools (must always be second parameter)\n--uninstall Show removal options\n-h Show this message\n\n"
   exit
 fi
 
 if [ "$1" == "-h" ]; then
-  printf "Use without paramters to see this message\n\n--run Run default installation script\n--gatesave Skip Gatekeeper patch (must always be last parameter)\n--hackerman Install pen-testing tools (must always be second parameter)\n-h Show this message\n\n"
+  printf "Use without paramters to see this message\n\n--run Run default installation script\n--gatesave Skip Gatekeeper patch (must always be last parameter)\n--hackerman Install pen-testing tools (must always be second parameter)\n--uninstall Show removal options\n-h Show this message\n\n"
   exit
 fi
 
@@ -38,8 +80,9 @@ if [ "$1" == "--run" ]; then
     printf "[+] Updating Homebrew\n"
     brew update
     brew upgrade
-    printf "[+] Pruning\n"
+    printf "[+] Cleaning up Homebrew installation\n"
     brew prune
+    brew cleanup
   else
     printf "[+] Installing Homebrew\n"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -167,6 +210,20 @@ if [ "$2" == "--hackerman" ]; then
   source ~/.bash_profile
   printf "\n\n\nFINISHED SETUP\n"
   printf "You may need to reload your terminal, but shouldn't have to\n"
+fi
+
+if [ "$1" == "--uninstall" ]; then
+  printf "Select your unistallation options from the list below:\n"
+  printf "1. Remove pen-testing tools only\n"
+  printf "2. Remove pen-testing tools and third party CLI utilities\n"
+  printf "3. Remove everything, resetting back to a pre-script state\n"
+  read selection
+  if [ "$selection" == "1" ]; then
+    remove 1
+  elif [ "$selection" == "2" ]; then
+    remove 2
+  else [ "$selection" == "3" ]; then
+    remove 3
 fi
 
 exit
