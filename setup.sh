@@ -141,19 +141,18 @@ main()
     xcodeVersionMajor=$(xcodebuild -version | sed -n 1p | cut -d' ' -f2- | cut -d'.' -f1)
     declare -i xcodeVersionMinor=$(xcodebuild -version | sed -n 1p | cut -d' ' -f2- | cut -d'.' -f2)
     if [ $? == 0 ] && [ "$xcodeVersionMajor" == "9"] && [ "$xcodeVersionMinor" -ge "0" ]; then
-      brew install mas
-    else
-      sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-      if [ $? != 0 ]; then
-        sudo xcode-select -s /Applications/Xcode-beta.app/Contents/Developer
-        if [ $? != 0 ]; then
-          printf "Xcode could not be found...MAS was not installed\n"
-        else
-          brew install mas
-        fi
-      else
+      printf "[+] Installing mas\n"
+      if [ "/Applications/Xcode.app" ]; then
+        sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
         brew install mas
+      elif [ "/Applications/Xcode-beta.app" ]; then
+        sudo xcode-select -s /Applications/Xcode-beta.app/Contents/Developer
+        brew install mas
+      else
+        printf "Xcode could not be found...MAS was not installed\n"
       fi
+    else
+      printf "Xcode could not be found...MAS was not installed\n"
     fi
   fi
   if [ ! -d "~/Dropbox/" ]; then
