@@ -78,11 +78,6 @@ getHelp()
 
 main()
 {
-  if inArray "--gatesave"; then
-    printf "" > /dev/null
-  else
-    gatekill
-  fi
   printf "Checking for Homebrew\n"
   brew info > /dev/null
   if [ $? == 0 ]; then
@@ -287,6 +282,11 @@ args=( "$@" )
 if inArray args "-h"; then
   getHelp
 elif inArray args "--run"; then
+  if inArray args "--gatesave"; then
+    printf "" > /dev/null
+  else
+    gatekill
+  fi
   if inArray args "--hackerman"; then
     main
     hackerman 
