@@ -35,6 +35,10 @@ Use without paramters to see this message
 -h Show this message
 ```
 
+#### Warning
+
+This script doesn't do a lot of error checking...if something fails, it's likely to halt the script and if you run it again, everything will start over. There's some minor error checking in certain areas (configs won't be restored if Dropbox isn't installed; MAS won't be installed if the proper version of Xcode isn't detected; etc) but for the most part, this is a pretty aggressive script that leaves a lot to chance. I will add some error checking in the future, but honestly, this isn't high on my list. This script works for me as intended and if it doesn't for you, you can go right ahead and modify it for your needs. 
+
 ## FAQ
 
 ### So...where does this install shit again?
