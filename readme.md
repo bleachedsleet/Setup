@@ -64,12 +64,16 @@ I use package managers for a number of reasons:
 
 Note: Homebrew is given preference since it is the most stable, respectful and sustainable package manager I've found. 
 
-### I like some random UNIX system...will this work?
+### I like some random \*nix system...will this work?
 
 No. Mac only and that's how it will stay. Sorry. 
 
-Porting is theoretically possible, especially with the Linuxbrew project supplanting Homebrew on nix systems, but I will not be the one doing all that nonsense. If that interests you, fork this script and have at it. 
+Porting is theoretically possible, especially with the Linuxbrew project supplanting Homebrew on \*nix systems, but I will not be the one doing all that nonsense. If that interests you, fork this script and have at it. 
 
 ### I hate this...how can I get rid of it?
 
 Run with the `--uninstall` flag and peruse options. Sorry to see you go. 
+
+## A Brief Word to the Wise
+
+I've said this before but I'll say it again: **This is a personal project**. I'm putting in some work and hosting it publically because these types of things can be useful to others, but this is really only going to be the case if your workflow is like mine. This script will probably change quite often to suit my needs. Things will come and go without warning. Workflows will change. I don't care about versions, portability, dependencies or anything else that generally makes software a joy to use for the end user. This was written with the latest versions of MacOS in mind, running the beta build of Xcode. Python 2 is an evil necessity in my mind...Python 3 is where is it's at. I dislike Dropbox as a company...I will probably end up removing some of the code related to it in the near future as I (slowly) move myself away from their platform. If you need help with something feel free to ask, but I'll respond only as time permits...this is not amongst the software that I give support for. If there's a real problem, open an issue. I like to tinker and will probably fix your problem at some point. Just don't treat this like you would something real. 
