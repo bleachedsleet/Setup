@@ -133,11 +133,23 @@ if [ "$1" == "--run" ]; then
     printf "Skipping Xcode install\n"
     printf "Xcode skipped...MAS will not be installed\n"
   else
-    xcodebuild -version > /dev/null
-    if [ $? == 0 ]; then
+    xcodeVersionMajor=$(xcodebuild -version | sed -n 1p | cut -d' ' -f2- | cut -d'.' -f1)
+    declare -i xcodeVersionMinor
+    xcodeVersionMinor=$(xcodebuild -version | sed -n 1p | cut -d' ' -f2- | cut -d'.' -f2)
+    if [ $? == 0 ] && [ "$xcodeVersionMajor" == "9"] && [ "$xcodeVersionMinor" -ge "0" ]; then
       brew install mas
     else
-      printf "Xcode could not be found...MAS was not installed\n"
+      sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+      if [ $? != 0 ]: then
+        sudo xcode-select -s /Applications/Xcode-beta.app/Contents/Developer
+        if [ $? !0 ]; then
+          printf "Xcode could not be found...MAS was not installed\n"
+        else
+          brew install mas
+        fi
+      else
+        brew install mas
+      fi
     fi
   fi
   if [ ! -d "~/Dropbox/" ]; then
