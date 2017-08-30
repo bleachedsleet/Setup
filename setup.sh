@@ -72,7 +72,7 @@ remove ()
 
 getHelp()
 {
-  printf "Use without paramters to see this message\n\n--run Run default installation script\n--gatesave Skip Gatekeeper patch\n--hackerman Install pen-testing tools\n--uninstall Show removal options\n-h Show this message\n\n"
+  printf "Use without paramters to see this message\n\n--run Run default installation script\n| --gatesave Skip Gatekeeper patch (optional)\n| --hackerman Install pen-testing tools (optional)\n--uninstall Show removal options\n-h Show this message\n\n"
   exit
 }
 

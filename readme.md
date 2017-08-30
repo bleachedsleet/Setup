@@ -29,8 +29,8 @@ chmod +x setup.sh
 Use without paramters to see this message
 
 --run Run default installation script
---gatesave Skip Gatekeeper patch
---hackerman Install pen-testing tools 
+| --gatesave Skip Gatekeeper patch (optional)
+| --hackerman Install pen-testing tools (optional)
 --uninstall Show removal options
 -h Show this message
 ```
