@@ -140,7 +140,7 @@ if [ "$1" == "--run" ]; then
       brew install mas
     else
       sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-      if [ $? != 0 ]: then
+      if [ $? != 0 ]; then
         sudo xcode-select -s /Applications/Xcode-beta.app/Contents/Developer
         if [ $? !0 ]; then
           printf "Xcode could not be found...MAS was not installed\n"
