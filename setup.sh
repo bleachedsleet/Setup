@@ -155,20 +155,19 @@ main()
       printf "Xcode could not be found...MAS was not installed\n"
     fi
   fi
-  if [ ! -d "~/Dropbox/" ]; then
-    printf "Dropbox not installed...skipping config restore\n"
-  else
-    if [ -d "~/Dropbox/Mackup/" ]; then
-      printf "[+] Restoring configs\n"
-      mackup restore
-    fi
-  fi
-  printf "[+] Updating dotfiles\n"
-  printf "eval $(thefuck --alias)\n" >> ~/.bash_profile
-  source ~/.bash_profile
   if [ ! ~/icloud/ ]; then
     printf "[+] Symlinking folders\n"
     ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs ~/iCloud
+  fi
+  printf "[+] Updating dotfiles\n"
+  printf "eval $(thefuck --alias)\n" >> ~/.bash_profile
+  printf "[storage]\n" >> ~/.mackup.cfg
+  printf "engine = icloud" >> ~/.mackup.cfg
+  source ~/.bash_profile
+  cd icloud
+  if [ -d "/Mackup/" ]; then
+    printf "[+] Restoring configs\n"
+    mackup restore
   fi
 }
 
