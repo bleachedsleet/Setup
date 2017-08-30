@@ -67,6 +67,7 @@ remove ()
   brew uninstall python3
   rm -Rf ~/iCloud
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+  sudo spctl --master-enable
 }
 
 getHelp()
