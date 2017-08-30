@@ -64,6 +64,10 @@ I use package managers for a number of reasons:
 
 Note: Homebrew is given preference since it is the most stable, respectful and sustainable package manager I've found. 
 
+### I like some random UNIX system...will this work?
+
+No. Mac only and that's how it will stay. Sorry. 
+
 ### I hate this...how can I get rid of it?
 
 Run with the `--uninstall` flag and peruse options. Sorry to see you go. 
