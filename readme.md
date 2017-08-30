@@ -43,7 +43,7 @@ This script doesn't do a lot of error checking...if something fails, it's likely
 
 ### So...where does this install shit again?
 
-Mostly this script uses package managers like NPM, Homebrew and Pip to install things and lets them handle paths accordingly. Otherwise, it installs everything into some well organized, neat directories in your `$HOME` directory. Any temporary directories or files created are deleted immediately to keep your system clean. Some aliases are created in your `~/.bash_profile` dotfile. Fork and modify as you see fit to change this workflow style. 
+Mostly this script uses package managers like NPM, Homebrew and Pip to install things and lets them handle paths accordingly. Otherwise, it installs everything into some well organized, neat directories in your `$HOME` directory. Any temporary directories or files created are deleted immediately to keep your system clean. Some aliases are created in your `~/.bash_profile` dotfile. Fork and modify as you see fit to change this workflow style. Metasploit installs to `/opt/` at your drive's root, as per its default requirements and SET likes to store some configs in strange places, but otherwise, everything installed should be pretty easy to manage. 
 
 Please note that `rm -Rf` is used at times to speed up the process of deleting temp files. If this troubles you, feel free to modify. An option for deleting directly to the trash instead will be offered in a near-future update utilizing the `trash-cli` tool that is installed with this script. 
 
