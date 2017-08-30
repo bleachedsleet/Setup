@@ -68,6 +68,8 @@ Note: Homebrew is given preference since it is the most stable, respectful and s
 
 No. Mac only and that's how it will stay. Sorry. 
 
+Porting is theoretically possible, especially with the Linuxbrew project supplanting Homebrew on nix systems, but I will not be the one doing all that nonsense. If that interests you, fork this script and have at it. 
+
 ### I hate this...how can I get rid of it?
 
 Run with the `--uninstall` flag and peruse options. Sorry to see you go. 
