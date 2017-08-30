@@ -103,6 +103,14 @@ if [ "$1" == "--run" ]; then
   	printf "[+] Installing pip\n"
   	sudo easy_install pip
   fi
+  printf "Checking for git\n"
+  git --version > /dev/null 
+  if [ $? == 0 ]; then
+    printf "Alredy installed\n"
+  else
+    printf "[+] Installing git\n"
+    brew install git 
+  fi
   printf "[+] Installing dependency packages if needed\n"
   pip3 install requests censys termcolor colorama
   printf "[+] Installing taps into Homebrew\n"
@@ -217,13 +225,17 @@ if [ "$1" == "--uninstall" ]; then
   printf "1. Remove pen-testing tools only\n"
   printf "2. Remove pen-testing tools and third party CLI utilities\n"
   printf "3. Remove everything, resetting back to a pre-script state\n"
+  printf "4. Exit Uninstaller\n"
   read selection
   if [ "$selection" == "1" ]; then
     remove 1
   elif [ "$selection" == "2" ]; then
     remove 2
-  else [ "$selection" == "3" ]; then
+  elif [ "$selection" == "3" ]; then
     remove 3
+  else
+    exit
+  fi
 fi
 
 exit

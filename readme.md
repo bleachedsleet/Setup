@@ -21,7 +21,7 @@ Just make the script executable and you're good to go!
 chmod +x setup.sh
 ```
 
-**Note** that curl and git are requirements for this script to run (see below). 
+**Note** that curl is a requirement for this script to run. 
 
 ## Usage
 
@@ -49,7 +49,7 @@ Actually, I don't want you to sudo anything. Running this script as ROOT will gi
 
 ### But I don't like "X" package manager...
 
-Then perhaps this script isn't for you! This uses NPM, Homebrew and Pip(3) liberally on an as needed basis. Only a few things are built directly from source. Some things are downloaded directly using `curl` or cloned using `git`. These are not considered dependencies and are not automatically installed so please be sure your system has them beforehand. In the future, I may expand this to also automatically install GUI apps using Cask (a wonderful Homebrew repo that is installed in this script) and `mas` (a CLI interface to the Mac App Store...still working on automating this part a bit more). 
+Then perhaps this script isn't for you! This uses NPM, Homebrew and Pip(3) liberally on an as needed basis. Only a few things are built directly from source. Some things are downloaded directly using `curl` or cloned using `git`. In the future, I may expand this to also automatically install GUI apps using Cask (a wonderful Homebrew repo that is installed in this script) and `mas` (a CLI interface to the Mac App Store...still working on automating this part a bit more). 
 
 I use package managers for a number of reasons:
 
