@@ -161,13 +161,20 @@ main()
   fi
   printf "[+] Updating dotfiles\n"
   printf "eval $(thefuck --alias)\n" >> ~/.bash_profile
-  printf "[storage]\n" >> ~/.mackup.cfg
-  printf "engine = icloud" >> ~/.mackup.cfg
   source ~/.bash_profile
-  cd icloud
-  if [ -d "/Mackup/" ]; then
-    printf "[+] Restoring configs\n"
-    mackup restore
+  if [ ! -d ~/Dropbox/ ]; then
+    printf "[+] Installing Dropbox\n"
+    brew cask install dropbox 
+    open -a Dropbox
+    printf "Waiting for Dropbox to sync...\n"
+    read -p "Press any key to continue when sync is finished"
+    if [ -d ~/Dropbox/Mackup/ ]; then
+      printf "[+] Restoring configs\n"
+      mackup restore
+    else
+      printf "[+] Backing up configs\n"
+      mackup backup
+    fi
   fi
 }
 
