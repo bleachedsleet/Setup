@@ -138,6 +138,7 @@ main()
     printf "Skipping Xcode install\n"
     printf "Xcode skipped...MAS will not be installed\n"
   else
+    #Get Xcode version by calling version, split at version number, cut main build and minor build...this should mean the script will work on all Xcode versions under 9.x including current beta builds
     xcodeVersionMajor=$(xcodebuild -version | sed -n 1p | cut -d' ' -f2- | cut -d'.' -f1)
     declare -i xcodeVersionMinor=$(xcodebuild -version | sed -n 1p | cut -d' ' -f2- | cut -d'.' -f2)
     if [ $? == 0 ] && [ "$xcodeVersionMajor" == "9"] && [ "$xcodeVersionMinor" -ge "0" ]; then
@@ -217,6 +218,7 @@ hackerman()
   read -p "Press [ENTER] to acknowledge and continue"
   sudo python setoolkit
   printf "\n\n\n[+] Patching SET configuration file\n"
+  #SET hates the default Metasploit install location for some reason and requires a patch in its config...this ugly sed command will do that
   sudo sed -i "" '33s|.*|METASPLOIT_PATH=/opt/metasploit-framework/bin/|' /private/etc/setoolkit/set.config
   if [ $? == 0 ]; then
     printf "SUCCESS\n"
