@@ -4,7 +4,7 @@
 #######################
 #FUNCTIONS
 #######################
-inArray() 
+inArray()
 {
   local argbundle=${1}[@]
   local currentarg=${2}
@@ -39,21 +39,21 @@ remove ()
   brew uninstall netcat
   brew uninstall sslsplit
   brew uninstall arp-scan
-  rm -Rf ~/arpy/
   sudo rm -Rf /opt/
   rm -Rf ~/setoolkit/
+  rm -Rf ~/Documents/Tools/
   if [ "$1" == "1" ]; then
-    return  
+    return
   fi
   brew uninstall thefuck
   sudo npm uninstall -g trash
   sudo npm uninstall -g trash-cli
   sudo npm uninstall -g tldr
-  sudo npm uninstall -g now
+  #sudo npm uninstall -g now
   sudo npm uninstall -g alex
   sudo npm uninstall -g vtop
   sudo pip uninstall howdoi
-  brew uninstall mas
+  brew uninstall profanity
   if [ "$1" == "2" ]; then
     return
   fi
@@ -61,10 +61,9 @@ remove ()
   sudo pip uninstall pexpect pycrypto
   pip3 uninstall requests censys termcolor colorama
   brew uninstall node
-  brew uninstall mackup
-  rm -Rf ~/Dropbox/Mackup/
   brew uninstall gource
   brew uninstall python3
+  brew uninstall python
   rm -Rf ~/iCloud
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
   sudo spctl --master-enable
@@ -109,12 +108,12 @@ main()
     sudo easy_install pip
   fi
   printf "Checking for git\n"
-  git --version > /dev/null 
+  git --version > /dev/null
   if [ $? == 0 ]; then
     printf "Alredy installed\n"
   else
     printf "[+] Installing git\n"
-    brew install git 
+    brew install git
   fi
   printf "[+] Installing dependency packages if needed\n"
   pip3 install requests censys termcolor colorama
@@ -129,33 +128,15 @@ main()
   sudo npm install -g vtop
   sudo pip install howdoi
   sudo npm install -g tldr
-  sudo npm install -g now
+  #sudo npm install -g now
   sudo npm install alex --global
-  brew install mackup
-  printf "Install Xcode now (v9+) then press [ENTER] to continue\nIf you don't want to do this now, press [S]\n"
-  read skip
-  if [ $skip == S ] || [ $skip == s ]; then
-    printf "Skipping Xcode install\n"
-    printf "Xcode skipped...MAS will not be installed\n"
-  else
-    #Get Xcode version by calling version, split at version number, cut main build and minor build...this should mean the script will work on all Xcode versions under 9.x including current beta builds
-    xcodeVersionMajor=$(xcodebuild -version | sed -n 1p | cut -d' ' -f2- | cut -d'.' -f1)
-    declare -i xcodeVersionMinor=$(xcodebuild -version | sed -n 1p | cut -d' ' -f2- | cut -d'.' -f2)
-    if [ $? == 0 ] && [ "$xcodeVersionMajor" == "9"] && [ "$xcodeVersionMinor" -ge "0" ]; then
-      printf "[+] Installing mas\n"
-      if [ "/Applications/Xcode.app" ]; then
-        sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-        brew install mas
-      elif [ "/Applications/Xcode-beta.app" ]; then
-        sudo xcode-select -s /Applications/Xcode-beta.app/Contents/Developer
-        brew install mas
-      else
-        printf "Xcode could not be found...MAS was not installed\n"
-      fi
-    else
-      printf "Xcode could not be found...MAS was not installed\n"
-    fi
+  if [ ! -d ~/Dropbox/ ]; then
+    printf "[+] Installing Dropbox\n"
+    brew cask install dropbox
+    open -a Dropbox
   fi
+  printf "[+] Installing localized Python 2\n"
+  brew install python
   if [ ! ~/icloud/ ]; then
     printf "[+] Symlinking folders\n"
     ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs ~/iCloud
@@ -163,24 +144,12 @@ main()
   printf "[+] Updating dotfiles\n"
   printf "eval $(thefuck --alias)\n" >> ~/.bash_profile
   source ~/.bash_profile
-  if [ ! -d ~/Dropbox/ ]; then
-    printf "[+] Installing Dropbox\n"
-    brew cask install dropbox 
-    open -a Dropbox
-    printf "Waiting for Dropbox to sync...\n"
-    read -p "Press any key to continue when sync is finished"
-    if [ -d ~/Dropbox/Mackup/ ]; then
-      printf "[+] Restoring configs\n"
-      mackup restore
-    else
-      printf "[+] Backing up configs\n"
-      mackup backup
-    fi
-  fi
 }
 
 hackerman()
 {
+  mkdir ~/Documents/Tools/
+  cd ~/Documents/Tools/
   printf "[+] Installing Nikto\n"
   brew install nikto
   printf "[+] Installing Nmap\n"
@@ -191,8 +160,9 @@ hackerman()
   brew install sslsplit
   printf "[+] Installing Arp-scan\n"
   brew install arp-scan
+  printf "[+] Installing Profanity\n"
+  brew install profanity
   printf "[+] Installing Arpy\n"
-  cd
   brew install gource
   pip install pycap pcapy scapy --user
   git clone https://github.com/ivanvza/arpy arpy/
@@ -202,13 +172,49 @@ hackerman()
   ./configure && make
   cd python
   sudo python setup.py install
-  cd
+  printf "[+] Installing DKMC\n"
+  cd ~/Documents/Tools/
+  git clone https://github.com/Mr-Un1k0d3r/DKMC
+  cd DKMC
+  mkdir output
+  printf "[+] Installing KnockMail\n"
+  cd ~/Documents/Tools/
+  git clone https://github.com/4w4k3/KnockMail.git
+  cd KnockMail
+  #The typo is intentional...there is an error in the repo that the author has yet to solve
+  sudo pip2 install -r requeriments.txt
+  printf "[+] Installing Red Hawk\n"
+  cd ~/Documents/Tools/
+  git clone https://github.com/Tuhinshubhra/RED_HAWK
+  printf "[+] Installing Sublist3r\n"
+  cd ~/Documents/Tools/
+  git clone https://github.com/aboul3la/Sublist3r.git
+  cd Sublist3r
+  sudo pip2 install -r requirements.txt
+  printf "[+] Installing V3n0m Scanner\n"
+  cd ~/Documents/Tools/
+  git clone https://github.com/v3n0m-Scanner/V3n0M-Scanner.git
+  cd V3n0m-Scanner
+  python3 setup.py install --user
+  printf "[+] Installing Credmap\n"
+  cd ~/Documents/Tools/
+  git clone https://github.com/lightos/credmap.git
+  printf "[+] Installing The Harvester\n"
+  cd ~/Documents/Tools/
+  git clone https://github.com/laramies/theHarvester.git
+  printf "[+] Installing Trape\n"
+  cd ~/Documents/Tools/
+  git clone https://github.com/boxug/trape.git
+  cd trape
+  sudo pip2 install -r requirements.txt
   printf "[+] Installing Metasploit\n"
+  cd
   curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall
   chmod 755 msfinstall
   sudo ./msfinstall
   rm -f msfinstall
   printf "[+] Installing SET\n"
+  cd ~/Documents/Tools/
   pip install pyopenssl pefile
   sudo pip install pexpect pycrypto
   git clone https://github.com/trustedsec/social-engineer-toolkit/ setoolkit/
@@ -234,8 +240,12 @@ hackerman()
     printf "Ok...to initialize your PATH manually, execute './msfconsole'\nfrom '/opt/metasploit-framework/bin'\n"
   fi
   printf "[+] Generating aliases\n"
-  printf "alias setoolkit='sudo python $HOME/setoolkit/setoolkit'\n" >> ~/.bash_profile
-  printf "alias arpy='sudo python $HOME/arpy/arpy.py'" >> ~/.bash_profile
+  printf "alias setoolkit='sudo python $HOME/tools/setoolkit/setoolkit'\n" >> ~/.bash_profile
+  printf "alias arpy='sudo python $HOME/tools/arpy/arpy.py'\n" >> ~/.bash_profile
+  printf "alias msfconsole='/opt/metasploit-framework/bin/msfconsole'\n" >> ~/.bash_profile
+  printf "alias msfupdate='/opt/metasploit-framework/bin/msfupdate'\n" >> ~/.bash_profile
+  printf "alias msfvenom='/opt/metasploit-framework/bin/msfvenom'\n" >> ~/.bash_profile
+  printf "alias tools='cd ~/Documents/Tools/'\n" >> ~/.bash_profile
   source ~/.bash_profile
   printf "\n\n\nFINISHED SETUP\n"
   printf "You may need to reload your terminal, but shouldn't have to\n"
@@ -282,7 +292,7 @@ fi
 # The "hackerman" function will only run if the "--run" flag is called with it...the order doesn't       #
 # matter.                                                                                                #
 #                                                                                                        #
-# "--run" is always executed above "--uninstall" even if "--uninstal" is called first                    #
+# "--run" is always executed above "--uninstall" even if "--uninstall" is called first                    #
 ##########################################################################################################
 
 args=( "$@" )
@@ -296,7 +306,7 @@ elif inArray args "--run"; then
   fi
   if inArray args "--hackerman"; then
     main
-    hackerman 
+    hackerman
   else
     main
   fi
