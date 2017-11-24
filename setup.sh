@@ -142,7 +142,7 @@ main()
     ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs ~/iCloud
   fi
   printf "[+] Updating dotfiles\n"
-  printf "eval $(thefuck --alias)\n" >> ~/.bash_profile
+  printf "\neval $(thefuck --alias)\n" >> ~/.bash_profile
   source ~/.bash_profile
 }
 
