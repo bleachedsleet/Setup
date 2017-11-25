@@ -54,6 +54,7 @@ remove ()
   sudo npm uninstall -g vtop
   sudo pip uninstall howdoi
   brew uninstall profanity
+  brew uninstall micro
   if [ "$1" == "2" ]; then
     return
   fi
@@ -128,6 +129,7 @@ main()
   sudo npm install -g vtop
   sudo pip install howdoi
   sudo npm install -g tldr
+  brew install micro
   #sudo npm install -g now
   sudo npm install alex --global
   if [ ! -d ~/Dropbox/ ]; then
