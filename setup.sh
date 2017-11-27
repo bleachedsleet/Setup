@@ -39,9 +39,13 @@ remove ()
   brew uninstall netcat
   brew uninstall sslsplit
   brew uninstall arp-scan
+  brew uninstall hydra
+  brew uninstall rkhunter
+  cd /opt/metasploit-framework/bin/
+  sudo ./msfremove
+  cd
   sudo rm -Rf /opt/
-  rm -Rf ~/setoolkit/
-  rm -Rf ~/Documents/Tools/
+  sudo rm -Rf ~/Documents/Tools/
   if [ "$1" == "1" ]; then
     return
   fi
@@ -65,6 +69,7 @@ remove ()
   brew uninstall gource
   brew uninstall python3
   brew uninstall python
+  rm -Rf ~/tensorflow
   rm -Rf ~/iCloud
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
   sudo spctl --master-enable
@@ -154,6 +159,10 @@ hackerman()
   cd ~/Documents/Tools/
   printf "[+] Installing Nikto\n"
   brew install nikto
+  printf "[+] Installing Hydra\n"
+  brew install hydra
+  printf "[+] Installing RKHunter\n"
+  brew install rkhunter
   printf "[+] Installing Nmap\n"
   brew install nmap
   printf "[+] Installing NetCat\n"
