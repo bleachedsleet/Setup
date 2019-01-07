@@ -40,7 +40,6 @@ remove ()
   brew uninstall sslsplit
   brew uninstall arp-scan
   brew uninstall hydra
-  brew uninstall rkhunter
   cd /opt/metasploit-framework/bin/
   sudo ./msfremove
   cd
@@ -49,15 +48,11 @@ remove ()
   if [ "$1" == "1" ]; then
     return
   fi
-  brew uninstall thefuck
   sudo npm uninstall -g trash
-  sudo npm uninstall -g trash-cli
   sudo npm uninstall -g tldr
   #sudo npm uninstall -g now
   sudo npm uninstall -g alex
-  sudo npm uninstall -g vtop
   sudo pip uninstall howdoi
-  brew uninstall profanity
   brew uninstall micro
   if [ "$1" == "2" ]; then
     return
@@ -128,29 +123,18 @@ main()
   printf "[+] Installing Nodejs\n"
   brew install node
   printf "[+] Installing CLI Packages\n"
-  brew install thefuck
   sudo npm install --save trash
-  sudo npm install --global trash-cli
-  sudo npm install -g vtop
   sudo pip install howdoi
   sudo npm install -g tldr
   brew install micro
   #sudo npm install -g now
   sudo npm install alex --global
-  if [ ! -d ~/Dropbox/ ]; then
-    printf "[+] Installing Dropbox\n"
-    brew cask install dropbox
-    open -a Dropbox
-  fi
   printf "[+] Installing localized Python 2\n"
   brew install python
   if [ ! ~/icloud/ ]; then
     printf "[+] Symlinking folders\n"
     ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs ~/iCloud
   fi
-  printf "[+] Updating dotfiles\n"
-  printf "\neval $(thefuck --alias)\n" >> ~/.bash_profile
-  source ~/.bash_profile
 }
 
 hackerman()
@@ -161,8 +145,6 @@ hackerman()
   brew install nikto
   printf "[+] Installing Hydra\n"
   brew install hydra
-  printf "[+] Installing RKHunter\n"
-  brew install rkhunter
   printf "[+] Installing Nmap\n"
   brew install nmap
   printf "[+] Installing NetCat\n"
@@ -171,8 +153,6 @@ hackerman()
   brew install sslsplit
   printf "[+] Installing Arp-scan\n"
   brew install arp-scan
-  printf "[+] Installing Profanity\n"
-  brew install profanity
   printf "[+] Installing Arpy\n"
   brew install gource
   pip install pycap pcapy scapy --user

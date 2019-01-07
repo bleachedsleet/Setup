@@ -7,7 +7,6 @@ It installs a number of useful utilities by default but can also install some mo
 * Installs Homebrew and a few good repos or updates and cleans it up if it's already installed
 * Sets up Python and Pip on a fresh system
 * Installs Nodejs and a number of really good CLI tools
-* Installs Mackup and restores configs if they exist
 * Symlinks iCloud Drive for easier access from the CLI
 * "Patches" Gatekeeper so you can install software from anywhere on El Capitan or higher systems
 * Properly sets up Metasploit and SET so they are immediately useable with an alias
@@ -43,9 +42,9 @@ This script doesn't do a lot of error checking...if something fails, it's likely
 
 ### So...where does this install shit again?
 
-Mostly this script uses package managers like NPM, Homebrew and Pip to install things and lets them handle paths accordingly. Otherwise, it installs everything into some well organized, neat directories in your `$HOME` directory. Any temporary directories or files created are deleted immediately to keep your system clean. Some aliases are created in your `~/.bash_profile` dotfile. Fork and modify as you see fit to change this workflow style. Metasploit installs to `/opt/` at your drive's root, as per its default requirements and SET likes to store some configs in strange places, but otherwise, everything installed should be pretty easy to manage. 
+Mostly this script uses package managers like NPM, Homebrew and Pip to install things and lets them handle paths accordingly. Otherwise, it installs everything into some well organized, neat directories in your `~/Documents/` directory. Any temporary directories or files created are deleted immediately to keep your system clean. Some aliases are created in your `~/.bash_profile` dotfile. Fork and modify as you see fit to change this workflow style. Metasploit installs to `/opt/` at your drive's root, as per its default requirements and SET likes to store some configs in strange places, but otherwise, everything installed should be pretty easy to manage. 
 
-Please note that `rm -Rf` is used at times to speed up the process of deleting temp files. If this troubles you, feel free to modify. An option for deleting directly to the trash instead will be offered in a near-future update utilizing the `trash-cli` tool that is installed with this script. 
+Please note that `rm -Rf` is used at times to speed up the process of deleting temp files. If this troubles you, feel free to modify.
 
 ### You want me to sudo what???
 
@@ -76,4 +75,4 @@ Run with the `--uninstall` flag and peruse options. Sorry to see you go.
 
 ## A Brief Word to the Wise
 
-I've said this before but I'll say it again: **This is a personal project**. I'm putting in some work and hosting it publically because these types of things can be useful to others, but this is really only going to be the case if your workflow is like mine. This script will probably change quite often to suit my needs. Things will come and go without warning. Workflows will change. I don't care about versions, portability, dependencies or anything else that generally makes software a joy to use for the end user. This was written with the latest versions of MacOS in mind, running the beta build of Xcode. Python 2 is an evil necessity in my mind...Python 3 is where is it's at. I dislike Dropbox as a company...I will probably end up removing some of the code related to it in the near future as I (slowly) move myself away from their platform. If you need help with something feel free to ask, but I'll respond only as time permits...this is not amongst the software that I give support for. If there's a real problem, open an issue. I like to tinker and will probably fix your problem at some point. Just don't treat this like you would something real. 
+I've said this before but I'll say it again: **This is a personal project**. I'm putting in some work and hosting it publically because these types of things can be useful to others, but this is really only going to be the case if your workflow is like mine. This script will probably change quite often to suit my needs. Things will come and go without warning. Workflows will change. I don't care about versions, portability, dependencies or anything else that generally makes software a joy to use for the end user. This was written with the latest versions of MacOS in mind, running the beta build of Xcode. Python 2 is an evil necessity in my mind...Python 3 is where is it's at.  If you need help with something feel free to ask, but I'll respond only as time permits...this is not amongst the software that I give support for. If there's a real problem, open an issue. I like to tinker and will probably fix your problem at some point. Just don't treat this like you would something real. 
