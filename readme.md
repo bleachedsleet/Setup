@@ -1,4 +1,3 @@
-### Active development on this project has [been moved to GitLab](https://gitlab.com/scratchfive/Setup). This project will be archived once the migration is fully complete and will no longer be updated. This migration is made in protest of GitHub's [continuing support of ICE](https://www.theverge.com/2019/10/9/20906213/github-ice-microsoft-software-email-contract-immigration-nonprofit-donation).
 
 # Setup
 
